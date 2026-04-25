@@ -1,11 +1,13 @@
-# philad-cfo
+# PHILAD-CFO
+
+![PHILAD-CFO Banner](assets/banner.png)
 
 AI Personal CFO — Plaid + IBKR + Perplexity financial intelligence in a self-hosted CLI.
 
 ## Quick Install
 
 ```bash
-git clone https://github.com/phildawson/philad-cfo && cd philad-cfo
+git clone https://github.com/PhilipAD/philad-cfo && cd philad-cfo
 bash scripts/install.sh          # pip install -e .
 philad-cfo init                  # create ~/.philad-cfo/config.yaml
 ```
