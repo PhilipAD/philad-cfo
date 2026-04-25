@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyc
+*.egg-info/
+dist/
+build/
+.eggs/
+
+# Config (contains secrets)
+~/.philad-cfo/config.yaml
+~/.philad-cfo/cache/
+
+# Virtualenvs
+venv/
+.venv/
+.env
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Test coverage
+.coverage
+htmlcov/
+.pytest_cache/
+
+# OS noise
+.DS_Store
+Thumbs.db

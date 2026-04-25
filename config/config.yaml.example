@@ -1,0 +1,129 @@
+# philad-cfo configuration file
+# Copy to ~/.philad-cfo/config.yaml and fill in your values.
+# API keys can also be set as environment variables (see .env.example).
+
+# ─────────────────────────────────────────────
+# Plaid — bank account, credit card, loan data
+# ─────────────────────────────────────────────
+plaid:
+  # Your Plaid client_id from https://dashboard.plaid.com/
+  client_id: "your_plaid_client_id"
+
+  # Plaid secret for the chosen environment
+  secret: "your_plaid_secret"
+
+  # Plaid environment: sandbox | development | production
+  environment: "sandbox"
+
+  # Access token (populated automatically after 'philad-cfo link')
+  # access_token: "access-sandbox-..."
+
+# ─────────────────────────────────────────────
+# IBKR — Interactive Brokers Gateway (paper trading)
+# ─────────────────────────────────────────────
+ibkr:
+  # IBKR Gateway host — keep localhost unless running remote
+  host: "127.0.0.1"
+
+  # IBKR Gateway port: 4001 (live) | 4002 (paper)
+  port: 4002
+
+  # Client ID — must be unique per TWS/Gateway session
+  client_id: 10
+
+  # Your IBKR paper trading account ID
+  account_id: "phidso079"
+
+  # Safety: only paper trades allowed when true
+  paper_trading: true
+
+# ─────────────────────────────────────────────
+# Perplexity — web research for financial intelligence
+# ─────────────────────────────────────────────
+perplexity:
+  # Perplexity API key from https://www.perplexity.ai/settings/api
+  api_key: "pplx-your-api-key"
+
+  # Model to use — pplx-2 is the latest (2026)
+  model: "pplx-2"
+
+# ─────────────────────────────────────────────
+# Discord — report delivery channel
+# ─────────────────────────────────────────────
+discord:
+  # Webhook URL — create at Server Settings > Integrations > Webhooks
+  webhook_url: "https://discord.com/api/webhooks/..."
+
+  # Home channel ID (informational, not used in API calls)
+  channel_id: "1489761694908678354"
+
+# ─────────────────────────────────────────────
+# Income — used for savings rate calculations
+# ─────────────────────────────────────────────
+income:
+  # Monthly take-home (post-tax, post-pension) in GBP
+  monthly_net: 4500.00
+
+  # Annual gross salary in GBP
+  annual_gross: 75000.00
+
+  # Currency code (GBP | USD | EUR)
+  currency: "GBP"
+
+# ─────────────────────────────────────────────
+# Mortgage planning
+# ─────────────────────────────────────────────
+mortgage:
+  # Target property purchase price in GBP
+  target_price: 500000.00
+
+  # Current deposit saved in GBP
+  current_deposit: 60000.00
+
+  # Monthly amount added to deposit savings
+  monthly_saving: 1500.00
+
+  # Target loan-to-value ratio (0.80 = 80% LTV / 20% deposit)
+  target_ltv: 0.80
+
+  # Annual interest rate as decimal (0.045 = 4.5%)
+  interest_rate: 0.045
+
+  # Mortgage term in years
+  term_years: 25
+
+# ─────────────────────────────────────────────
+# Investment monitoring (mean-reversion signals)
+# ─────────────────────────────────────────────
+investment:
+  # RSI below this → BUY signal
+  rsi_buy_threshold: 30.0
+
+  # RSI above this → SELL signal
+  rsi_sell_threshold: 70.0
+
+  # Safety: never execute real trades when true (use paper only)
+  paper_only: true
+
+  # Watchlist symbols with risk ratings and execution settings
+  # risk: LOW | MED | HIGH
+  # auto_execute: HIGH risk is ALWAYS overridden to false regardless of this setting
+  watchlist:
+    - symbol: "IONQ"
+      risk: "MED"
+      auto_execute: true
+    - symbol: "DWAVE"
+      risk: "HIGH"
+      auto_execute: false   # HIGH risk: manual review always required
+    - symbol: "SNDK"
+      risk: "LOW"
+      auto_execute: true
+    - symbol: "VERT"
+      risk: "LOW"
+      auto_execute: true
+
+# ─────────────────────────────────────────────
+# Paths (optional — defaults shown)
+# ─────────────────────────────────────────────
+# kb_root: "~/.philad-cfo/kb"
+# cache_dir: "~/.philad-cfo/cache"
