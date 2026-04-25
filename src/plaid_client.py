@@ -27,9 +27,11 @@ from src.config import ConfigurationError, PlaidConfig
 
 ENVIRONMENTS = {
     "sandbox": plaid.Environment.Sandbox,
-    "development": plaid.Environment.Development,
     "production": plaid.Environment.Production,
 }
+
+# 'development' maps to Production (Plaid deprecated Development env in v20+)
+_ENV_FALLBACK = plaid.Environment.Production
 
 
 class PlaidClient:
@@ -46,7 +48,7 @@ class PlaidClient:
         if not config.secret:
             raise ConfigurationError("PLAID_SECRET is required")
 
-        env = ENVIRONMENTS.get(config.environment, plaid.Environment.Sandbox)
+        env = ENVIRONMENTS.get(config.environment, _ENV_FALLBACK)
         configuration = plaid.Configuration(
             host=env,
             api_key={

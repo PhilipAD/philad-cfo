@@ -12,7 +12,7 @@ plaid:
   # Plaid secret for the chosen environment
   secret: "your_plaid_secret"
 
-  # Plaid environment: sandbox | development | production
+  # Plaid environment: sandbox | production
   environment: "sandbox"
 
   # Access token (populated automatically after 'philad-cfo link')
